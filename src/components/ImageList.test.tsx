@@ -4,6 +4,7 @@ import {configure, mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import {GridList} from "@material-ui/core";
 import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 describe('ImageList', () => {
     it('should contain GridList', () => {
@@ -23,6 +24,13 @@ describe('ImageList', () => {
         const mountedImageList = createMountedImageListWithImages();
         const gridListTiles = mountedImageList.find(GridListTile)
         expect(gridListTiles).toHaveLength(1)
+    })
+
+    it('GridListTile should have GridListTileBar', () => {
+        configure({ adapter: new Adapter() });
+        const mountedImageList = createMountedImageListWithImages();
+        const gridListTileBars = mountedImageList.find(GridListTileBar)
+        expect(gridListTileBars).toHaveLength(1)
     })
 })
 
