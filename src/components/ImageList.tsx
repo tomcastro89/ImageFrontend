@@ -15,6 +15,16 @@ export default class ImageList extends React.Component<Props,State> {
             images: []
         }
     }
+
+    componentDidMount(): void {
+        fetch('http://localhost:8080/images')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ images: data })
+            })
+            .catch(console.log)
+    }
+
     render() {
         return <GridList
             cellHeight={180}
