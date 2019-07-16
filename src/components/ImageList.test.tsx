@@ -10,4 +10,10 @@ describe('ImageList', () => {
         const gridListComponents = mount(<ImageList/>).find(GridList)
         expect(gridListComponents).toHaveLength(1)
     })
+
+    it('should have list called images in state', () => {
+        configure({ adapter: new Adapter() });
+        const imagesState = mount(<ImageList/>).state('images')
+        expect(imagesState).toMatchObject([])
+    })
 })
