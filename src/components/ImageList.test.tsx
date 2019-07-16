@@ -3,6 +3,7 @@ import * as React from "react";
 import {configure, mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import {GridList} from "@material-ui/core";
+import GridListTile from "@material-ui/core/GridListTile";
 
 describe('ImageList', () => {
     it('should contain GridList', () => {
@@ -16,4 +17,23 @@ describe('ImageList', () => {
         const imagesState = mount(<ImageList/>).state('images')
         expect(imagesState).toMatchObject([])
     })
+
+    it('should create a GridListTile for every Image in state', () => {
+        configure({ adapter: new Adapter() });
+        const mountedImageList = createMountedImageListWithImages();
+        const gridListTiles = mountedImageList.find(GridListTile)
+        expect(gridListTiles).toHaveLength(1)
+    })
 })
+
+function createMountedImageListWithImages() {
+    const mountedImageList = mount(<ImageList/>)
+    let images: { name: string, source: string }[] = [
+        {
+            "name": "Itemis Logo",
+            "source": "https://raw.githubusercontent.com/tomcastro89/Imageprovider/master/itemis_logo.jpeg"
+        }
+    ];
+    mountedImageList.setState({images: images})
+    return mountedImageList;
+}
