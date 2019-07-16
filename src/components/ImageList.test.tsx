@@ -56,6 +56,13 @@ describe('ImageList', () => {
         const images = mountedImageList.find("img")
         expect(images.first().prop('src')).toBe(testImageSource)
     })
+
+    it('GridListTile should have list index as key', () => {
+        configure({ adapter: new Adapter() });
+        const mountedImageList = createMountedImageListWithImages();
+        const gridListTiles = mountedImageList.find(GridListTile)
+        expect(gridListTiles.last().key()).toBe(".$0")
+    })
 })
 
 function createMountedImageListWithImages() {
