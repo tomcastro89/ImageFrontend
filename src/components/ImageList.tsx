@@ -1,6 +1,7 @@
 import React from 'react'
 import {GridList} from "@material-ui/core";
 import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 interface State {
     images: []
@@ -17,7 +18,7 @@ export default class ImageList extends React.Component<Props,State> {
     render() {
         return <GridList>
             {this.state.images.map((image) => (
-                <GridListTile/>
+                <GridListTile><GridListTileBar/></GridListTile>
             ))}
         </GridList>;
     }
