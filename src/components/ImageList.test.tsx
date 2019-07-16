@@ -34,6 +34,7 @@ describe('ImageList', () => {
         const gridListTileBars = mountedImageList.find(GridListTileBar)
         expect(gridListTileBars).toHaveLength(1)
     })
+
     it('GridListTileBar should have Title with Image name from corresponding image', () => {
         configure({ adapter: new Adapter() });
         const mountedImageList = createMountedImageListWithImages();
@@ -41,6 +42,12 @@ describe('ImageList', () => {
         expect(gridListTileBars.first().prop('title')).toBe(testImageName)
     })
 
+    it('GridListTile should have an Image', () => {
+        configure({ adapter: new Adapter() })
+        const mountedImageList = createMountedImageListWithImages();
+        const images = mountedImageList.find("img")
+        expect(images).toHaveLength(1)
+    })
 })
 
 function createMountedImageListWithImages() {
