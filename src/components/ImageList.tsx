@@ -17,8 +17,8 @@ export default class ImageList extends React.Component<Props,State> {
     }
     render() {
         return <GridList>
-            {this.state.images.map((image) => (
-                <GridListTile><GridListTileBar/></GridListTile>
+            {this.state.images.map((image: {name: string,source: string}) => (
+                <GridListTile><GridListTileBar title={image.name}/></GridListTile>
             ))}
         </GridList>;
     }
