@@ -7,6 +7,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 const testImageName = "Itemis Logo";
+const testImageSource = "https://raw.githubusercontent.com/tomcastro89/Imageprovider/master/itemis_logo.jpeg";
 
 describe('ImageList', () => {
     it('should contain GridList', () => {
@@ -48,6 +49,13 @@ describe('ImageList', () => {
         const images = mountedImageList.find("img")
         expect(images).toHaveLength(1)
     })
+
+    it('GridListTile Image should have image source of corresponding image', () => {
+        configure({ adapter: new Adapter() })
+        const mountedImageList = createMountedImageListWithImages()
+        const images = mountedImageList.find("img")
+        expect(images.first().prop('src')).toBe(testImageSource)
+    })
 })
 
 function createMountedImageListWithImages() {
@@ -55,7 +63,7 @@ function createMountedImageListWithImages() {
     let images: { name: string, source: string }[] = [
         {
             "name": testImageName,
-            "source": "https://raw.githubusercontent.com/tomcastro89/Imageprovider/master/itemis_logo.jpeg"
+            "source": testImageSource
         }
     ];
     mountedImageList.setState({images: images})
